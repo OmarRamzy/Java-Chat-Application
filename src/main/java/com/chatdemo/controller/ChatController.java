@@ -1,8 +1,5 @@
 package com.chatdemo.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -16,15 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.chatdemo.model.ChatMessage;
 import com.chatdemo.service.ChatService;
+import com.chatdemo.service.UserServiceImp;
 
 
 
 @Controller
 public class ChatController {
 	
-	// store users that in chat currently to overcome one browser session issue,
-	// as if user log in and opens another tab he will be in same session and  
-	 public	static List<String> users = new ArrayList<String>();
 	 
 	 //ChatService object injection
 	 @Autowired
@@ -32,19 +27,19 @@ public class ChatController {
 
 	
 	@GetMapping("/")
-	public String Hello (Model theModel) {
+	public String showChatPage (Model theModel) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		//get current user name
 		String userName= auth.getName();
 		
 		
 		// if user already in chat (opens another tab) he will be forced to log in again 
-		if (users.contains(userName)) {
-			System.out.println(users.size());
+		if (UserServiceImp.activeUsers.contains(userName)) {
 			return "login-page";
 		}
-	    System.out.println("Add User: "+ userName );
-		users.add(userName);
+		
+	    System.out.println("Add User: "+ userName+ " to active users list" );
+	    UserServiceImp.activeUsers.add(userName);
 				
 		theModel.addAttribute("userName", userName);
 		return "chat-page";

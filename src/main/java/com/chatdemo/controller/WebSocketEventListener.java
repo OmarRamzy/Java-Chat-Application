@@ -13,6 +13,7 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 import com.chatdemo.model.ChatMessage;
 import com.chatdemo.service.ChatService;
+import com.chatdemo.service.UserServiceImp;
 
 @Component
 public class WebSocketEventListener {
@@ -30,11 +31,8 @@ public class WebSocketEventListener {
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
         logger.info("Received a new web socket connection");
         System.out.println(event);
-        
-		
+        		
 		System.out.println("username from event: " + event.getUser().getName());
-
-        
     }
 
     @EventListener
@@ -52,11 +50,9 @@ public class WebSocketEventListener {
             
             //remove user from chat list
             System.out.println("Reomve: "+username+" from chat users");
-            ChatController.users.remove(username);
-    		System.out.println("Number of Current Active users: "+ChatController.users.size());
+            UserServiceImp.activeUsers.remove(username);
+    		System.out.println("Number of Current Active users: "+UserServiceImp.activeUsers.size());
 
-            //ChatListener.saveClientWordOccurrenceCount(username);
-            //ChatListener.saveAllClientsWordOccurrenceCount(username);
             
             chatService.addStatisticsToClientFile(username);
             chatService.addStatisticsToAllClientsChatHistory(username);
