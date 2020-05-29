@@ -1,9 +1,9 @@
 # Java-Chat-Application
-   ## Chat application using Spring Boot and WebSocket.
+   #### Chat application using Spring Boot and WebSocket.
 
 # Requirements
-  ## 1. Java - 1.8.x
-  ## 2. Maven - 3.x.x
+  ##### 1. Java - 1.8.x
+  ##### 2. Maven - 3.x.x
  
 # Steps to Setup
   ## 1. Clone the application
