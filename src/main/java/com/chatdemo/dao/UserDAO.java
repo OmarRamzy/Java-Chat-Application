@@ -1,8 +1,10 @@
 package com.chatdemo.dao;
 
-import java.util.Map;
+import java.util.List;
+
+import com.chatdemo.model.User;
 
 public interface UserDAO {
-	public Map<String, String> getUsersDataFromFile();
+	public List<User> getUsersDataFromFile();
 
 }

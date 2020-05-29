@@ -3,10 +3,12 @@ package com.chatdemo.dao;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
+
+import com.chatdemo.model.User;
 
 @Repository
 public class UserDAOImp implements UserDAO {
@@ -15,9 +17,9 @@ public class UserDAOImp implements UserDAO {
 
 
 	@Override
-	public Map<String, String> getUsersDataFromFile() {
+	public List<User> getUsersDataFromFile() {
 		
-		Map<String, String> usersMap = new HashMap<String,String>();
+		List<User> users = new ArrayList<User>();
 		String filePath = System.getProperty("user.dir")+"/UsersInfo/UsersData.txt"; 
 
 		try {
@@ -28,7 +30,7 @@ public class UserDAOImp implements UserDAO {
 				String [] lineWords =	line.split(" ");
 				
 				if(lineWords[0]!=null && lineWords[1]!=null)
-				usersMap.put(lineWords[0], lineWords[1]);
+				users.add(new User(lineWords[0] , lineWords[1]));
 				line = reader.readLine();
 			}
 		} catch (IOException e) {
@@ -43,7 +45,7 @@ public class UserDAOImp implements UserDAO {
 		}
 
 		
-		return usersMap;
+		return users;
 
 	}
 

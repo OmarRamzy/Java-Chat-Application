@@ -1,9 +1,11 @@
 package com.chatdemo.service;
 
-import java.util.Map;
+import java.util.List;
+
+import com.chatdemo.model.User;
 
 public interface UserService {
 	
-	public Map<String, String> getUsersDataFromFile();
+	public List<User> getUsersDataFromFile();
 
 }

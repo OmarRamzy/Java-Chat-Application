@@ -1,6 +1,6 @@
 package com.chatdemo.config;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.chatdemo.model.User;
 import com.chatdemo.service.UserService;
 
 
@@ -16,15 +17,18 @@ import com.chatdemo.service.UserService;
 @EnableWebSecurity
 public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
+	// inject user service to get user log info from file
 	@Autowired
 	UserService userService;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		Map<String,String> users = userService.getUsersDataFromFile();
+		
+		List<User> users = userService.getUsersDataFromFile();
+		
 		/*
 	    auth.inMemoryAuthentication()
-	     .withUser("Omar").password("{noop}test").roles("") 
+	     .withUser("Omar").password("{noop}Omar").roles("") 
 	     .and()
 	     .withUser("Adel").password("{bcrypt}$2a$10$rwExHJyKaOEcOxDfjEKecucmMah1x0o3jYw3/YzigczsrMZDQWQUu").roles("") // Adel
 	     .and()
@@ -32,10 +36,10 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 	    */
 	    
 	    if(users.size()>0) {
-	    	for(Map.Entry<String,String> entry : users.entrySet()) {
+	    	for(User user : users) {
 	    		
 	    	    auth.inMemoryAuthentication()
-	   	     .withUser(entry.getKey()).password(entry.getValue()).roles("") ;
+	   	     .withUser(user.getUserName()).password(user.getPassword()).roles("") ;
 
 	    	}
 	    }
