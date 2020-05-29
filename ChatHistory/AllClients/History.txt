@@ -1,0 +1,56 @@
+Omar: Hello All
+Adel: Hello All
+Omar: Hello Adel
+Adel: Hello adel
+Ali: Hello All
+Adel: bye bye
+<------------------------------------------------>
+<Number_of_Each_word_oucrreence_After:Adel_left>
+<All> <----> <3>
+<Hello> <----> <5>
+<Adel> <----> <1>
+<adel> <----> <1>
+<bye> <----> <2>
+<------------------------------------------------>
+Omar: Welcome Ali
+Adel: Hello Again!
+Ali: Hello Omar
+Omar: bye bye
+<------------------------------------------------>
+<Number_of_Each_word_oucrreence_After:Omar_left>
+<All> <----> <3>
+<Hello> <----> <7>
+<Adel> <----> <1>
+<Again!> <----> <1>
+<adel> <----> <1>
+<Welcome> <----> <1>
+<Omar> <----> <1>
+<bye> <----> <4>
+<Ali> <----> <1>
+<------------------------------------------------>
+Adel: bye bye
+<------------------------------------------------>
+<Number_of_Each_word_oucrreence_After:Adel_left>
+<All> <----> <3>
+<Hello> <----> <7>
+<Adel> <----> <1>
+<Again!> <----> <1>
+<adel> <----> <1>
+<Welcome> <----> <1>
+<Omar> <----> <1>
+<bye> <----> <6>
+<Ali> <----> <1>
+<------------------------------------------------>
+Ali: bye bye
+<------------------------------------------------>
+<Number_of_Each_word_oucrreence_After:Ali_left>
+<All> <----> <3>
+<Hello> <----> <7>
+<Adel> <----> <1>
+<Again!> <----> <1>
+<adel> <----> <1>
+<Welcome> <----> <1>
+<Omar> <----> <1>
+<bye> <----> <8>
+<Ali> <----> <1>
+<------------------------------------------------>
