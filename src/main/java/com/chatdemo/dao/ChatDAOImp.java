@@ -69,8 +69,8 @@ public class ChatDAOImp implements ChatDAO {
 			 		
 			 		if(wordsMap.containsKey(lineWords[i])) {
 			 			int occurrences = wordsMap.get(lineWords[i]);
-			 	        occurrences++;
-			 	        wordsMap.put(lineWords[i], occurrences);
+			 	       		occurrences++;
+			 	     	        wordsMap.put(lineWords[i], occurrences);
 			 		}
 			 		else
 			 			wordsMap.put(lineWords[i], 1);
