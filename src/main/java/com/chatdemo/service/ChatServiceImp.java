@@ -21,9 +21,6 @@ public class ChatServiceImp implements ChatService {
 		this.chatDAO=chatDAO;
 	}
 	
-	// store users that in chat currently to overcome one browser session issue,
-	// as if user log in and opens another tab he will be in same session and  
-	 public	static List<String> users = new ArrayList<String>();
 
 
 	@Override
