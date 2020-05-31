@@ -68,12 +68,14 @@ function sendMessage(event) {
         if(message.localeCompare("bye bye")==0){
                // window.location.href="showMyLoginPage";
             if (stompClient !== null) {
-                window.location.href="showMyLoginPage";
+                window.location.href="/logout";
                 stompClient.disconnect();
                 
             }
+            stompClient.disconnect();
+
        //     console.log("Disconnected");
-       //     window.location.href="showMyLoginPage";
+            window.location.href="/logout";
 
             }
 

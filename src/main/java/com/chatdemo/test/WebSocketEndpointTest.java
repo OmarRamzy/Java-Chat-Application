@@ -11,7 +11,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
-import org.junit.Before;
 //import org.junit.Test;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +20,7 @@ import org.springframework.messaging.simp.stomp.StompFrameHandler;
 import org.springframework.messaging.simp.stomp.StompHeaders;
 import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
 import org.springframework.web.socket.sockjs.client.SockJsClient;
@@ -30,24 +29,17 @@ import org.springframework.web.socket.sockjs.client.WebSocketTransport;
 
 import com.chatdemo.model.ChatMessage;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class WebSocketEndpointTest {
 
-	private static String URL = "ws://localhost:" + "8070" + "/ws";
+	private static String URL = "ws://localhost:" + "8080" + "/ws";
 
 	private static final String SEND_SEND_MESSAGE_ENDPOINT = "/app/chat.sendMessage";
 	private static final String SUBSCRIBE_PUBBLIC_ENDPOINT = "/topic/public";
 
 	private CompletableFuture<ChatMessage> completableFuture = new CompletableFuture<>();
 
-
-	@Before
-	public void setup() {
-		System.out.println("here in setup");
-		completableFuture = new CompletableFuture<>();
-		URL = "ws://localhost:" + "6086" + "/ws";
-	}
 
 	@Test
 	public void sendMessageEndpointTest()
@@ -72,11 +64,8 @@ public class WebSocketEndpointTest {
 			System.out.println("here");
 			System.out.println(e.getMessage());
 		}
-		// ChatMessage messagez = completableFuture.get(10, SECONDS);
-		ChatMessage message = new ChatMessage();
-		message.setContent("Hello All");
+	   ChatMessage message = completableFuture.get(10, SECONDS);
 
-		System.out.println(message.toString());
 
 		assertNotNull(message);
 	}
@@ -91,8 +80,7 @@ public class WebSocketEndpointTest {
 
 		@Override
 		public void handleFrame(StompHeaders headers, Object payload) {
-			System.out.println("اhandllllllller:>>>>>>>>> " + (ChatMessage) payload);
-			System.out.println("compleeeeeeeeeeeeeeeeeeeteeeeeeeeeeeeeeeee");
+
 			completableFuture.complete((ChatMessage) payload);
 		}
 

@@ -63,6 +63,12 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 	.logout()
 	.permitAll();
 	
+	//enable https
+	http.
+	requiresChannel().
+	anyRequest()
+	.requiresSecure();
+	
 	}
 	
 	
